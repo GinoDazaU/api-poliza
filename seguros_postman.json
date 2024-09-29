@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "e12b34a5-6789-43b0-a456-8aef567123e4",
-		"name": "API Seguros de Bienes Collection",
+		"name": "API Seguros de Bienes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
