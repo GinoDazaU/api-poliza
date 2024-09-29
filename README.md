@@ -1,4 +1,6 @@
-##Api Poliza
+Api Poliza y seguros
+
+Estan los das colecciones para probar el api
 
 1. compilar el proyecto con: ./mvn package
 2. usar el docker compose con: docker-compose up -d
