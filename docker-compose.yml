@@ -1,0 +1,27 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: poliza_db      # El nombre de la base de datos
+      POSTGRES_USER: poliza_user  # El usuario que accederá a la base de datos
+      POSTGRES_PASSWORD: poliza_password  # La contraseña del usuario
+    volumes:
+      - postgres_data:/var/lib/postgresql/data  # Para persistencia de datos
+    ports:
+      - "5432:5432"  # Exponiendo PostgreSQL en el puerto 5432
+
+  apipoliza:
+    build: .
+    ports:
+      - "8080:8080"  # Exponiendo la aplicación en el puerto 8080
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/poliza_db  # Conexión a PostgreSQL
+      SPRING_DATASOURCE_USERNAME: poliza_user  # Usuario para la conexión a la BD
+      SPRING_DATASOURCE_PASSWORD: poliza_password  # Contraseña para la conexión
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update  # Para que Hibernate cree las tablas automáticamente si es necesario
+    depends_on:
+      - postgres  # Dependencia para asegurarse que PostgreSQL se inicie antes que la API
+
+volumes:
+  postgres_data:  # Definición del volumen para persistencia
